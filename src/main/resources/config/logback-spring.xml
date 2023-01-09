@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="10 seconds">
+
+    <property name="log_file_name" value="pos-api" />
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %logger{36}[line: %L] - %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./log/${log_file_name}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./log/backup/${log_file_name}_%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>1800</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %logger{36}[line: %L] - %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.zaxxer.hikari" level="debug" />
+    <logger name="org.springframework.jdbc" level="debug" />
+    <logger name="org.springframework" level="error" />
+    <logger name="com.ulisesbocchio.jasyptspringboot" level="error" />
+
+    <root level="debug">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>

@@ -19,16 +19,16 @@ import java.util.Map;
 
 @Slf4j
 @RestController
-@RequestMapping("/v1")
-public class HandTerminalController {
+@RequestMapping("/v1/upload")
+public class UploadController {
 
-    @PostMapping("/handterminal")
+    @PostMapping("/string")
     public String saveHandTerminalData(@RequestHeader Map<String, String> headers, @RequestBody String fileContents) throws Exception {
 
         CommonResponse response = new CommonResponse();
 
         String fileName = headers.get("file-name");
-        String filePath = "C:/HTDATA/" + fileName.substring(0, 10) + "/";
+        String filePath = "C:/UPLOAD/" + fileName.substring(0, 10) + "/";
 
         Path savePath = Paths.get(filePath);
         if (!Files.exists(savePath)) {
@@ -49,13 +49,13 @@ public class HandTerminalController {
         return new Gson().toJson(response, CommonResponse.class);
     }
 
-    @PostMapping("/image")
+    @PostMapping("/file")
     public String saveImage(@RequestHeader Map<String, String> headers, @RequestParam("image") MultipartFile multipartFile) throws Exception {
 
         CommonResponse response = new CommonResponse();
 
         String fileName = headers.get("file-name");
-        String filePath = "C:/IMAGE/"; // + fileName.substring(0, 10) + "/";
+        String filePath = "C:/UPLOAD/FILE/"; // + fileName.substring(0, 10) + "/";
 
         Path savePath = Paths.get(filePath);
         if (!Files.exists(savePath)) {

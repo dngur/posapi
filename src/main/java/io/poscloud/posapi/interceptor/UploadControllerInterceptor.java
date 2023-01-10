@@ -7,16 +7,15 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 @Slf4j
 @Component
-public class HandTerminalControllerInterceptor implements HandlerInterceptor {
+public class UploadControllerInterceptor implements HandlerInterceptor {
 
     HashGenerator hashGenerator;
 
     @Autowired
-    public HandTerminalControllerInterceptor(HashGenerator hashGenerator) {
+    public UploadControllerInterceptor(HashGenerator hashGenerator) {
         this.hashGenerator = hashGenerator;
     }
 

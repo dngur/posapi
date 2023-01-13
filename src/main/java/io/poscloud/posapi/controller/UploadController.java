@@ -28,7 +28,7 @@ public class UploadController {
         CommonResponse response = new CommonResponse();
 
         String fileName = headers.get("file-name");
-        String filePath = "C:/UPLOAD/" + fileName.substring(0, 10) + "/";
+        String filePath = "./UPLOAD/" + fileName.substring(0, 10) + "/";
 
         Path savePath = Paths.get(filePath);
         if (!Files.exists(savePath)) {
@@ -55,7 +55,7 @@ public class UploadController {
         CommonResponse response = new CommonResponse();
 
         String fileName = headers.get("file-name");
-        String filePath = "C:/UPLOAD/FILE/"; // + fileName.substring(0, 10) + "/";
+        String filePath = "./UPLOAD/FILE/"; // + fileName.substring(0, 10) + "/";
 
         Path savePath = Paths.get(filePath);
         if (!Files.exists(savePath)) {

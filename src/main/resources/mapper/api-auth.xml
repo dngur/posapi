@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "io.poscloud.posapi.mapper.ApiAuthMapper">
+
+<!--    <select id = "selectLatestVersion" resultType="LatestVersionVO">-->
+<!--        SELECT MAX(version) AS version-->
+<!--        FROM m_version-->
+<!--    </select>-->
+
+<!--    <select id = "selectApiKey" parameterType="string" resultType="ApiKeyVO">-->
+<!--        SELECT id-->
+<!--             , company_id-->
+<!--             , api_key-->
+<!--             , created_at-->
+<!--             , is_expired-->
+<!--        FROM m_api_key-->
+<!--        WHERE 1=1-->
+<!--          AND api_key = #{apiKey}-->
+<!--    </select>-->
+
+
+
+</mapper>

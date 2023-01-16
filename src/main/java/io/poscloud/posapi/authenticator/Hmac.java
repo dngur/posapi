@@ -20,6 +20,7 @@ public class Hmac {
                 sb.append(String.format("%02x", b));
             }
             resultBuf = sb.toString();
+
         } catch (Exception e) {
             log.error(e.toString());
         }

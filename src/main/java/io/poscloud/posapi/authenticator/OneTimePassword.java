@@ -15,6 +15,8 @@ public class OneTimePassword {
 
     public boolean isOtpValid(String otp, String taxId) {
 
+        log.debug(">>>>> otp : {}", otp);
+
         String t1 = new SimpleDateFormat("HHmmss", Locale.KOREA).format(new Date());
         int sec = Integer.parseInt(t1.substring(4, 6));
 
@@ -43,6 +45,8 @@ public class OneTimePassword {
 
         String hmac = getHmacSHA256(taxId, timeStamp);
         long dec = Long.parseLong(hmac, 16);
-        return String.format("%06d", dec % 1000000);
+        String otp = String.valueOf(dec % 1000000);
+        log.debug(">>>>> {} {}", timeStamp, otp);
+        return otp;
     }
 }

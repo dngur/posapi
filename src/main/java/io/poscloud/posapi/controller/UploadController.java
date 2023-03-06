@@ -55,29 +55,33 @@ public class UploadController {
         CommonResponse response = new CommonResponse();
 
         String fileName = headers.get("file-name");
-        String filePath = "./UPLOAD/FILE/"; // + fileName.substring(0, 10) + "/";
+        String storeCode = headers.get("shop-code");
+        String taxId = headers.get("tax-id");
+
+        if (null == fileName || null == storeCode || null == taxId) {
+            response.setCode("400");
+            response.setMessage("bad request");
+            return new Gson().toJson(response, CommonResponse.class);
+        }
+
+        String filePath = String.format("/home/jbmex/www/spidor/images/%s/%s/", taxId, storeCode);
 
         Path savePath = Paths.get(filePath);
         if (!Files.exists(savePath)) {
             Files.createDirectories(savePath);
         }
 
-        try {
-            try (InputStream inputStream = multipartFile.getInputStream()) {
-                Path path = savePath.resolve(fileName);
-                Files.copy(inputStream, path, StandardCopyOption.REPLACE_EXISTING);
-                response.setCode("200");
-                response.setMessage("ok");
-            } catch (IOException ee) {
-                log.error("saveImage() : {}", ee.getLocalizedMessage());
-                response.setCode("500");
-                response.setMessage("error");
-            }
-        } catch (Exception e) {
-            log.error("saveImage() : {}", e.getLocalizedMessage());
+        try (InputStream inputStream = multipartFile.getInputStream()) {
+            Path path = savePath.resolve(fileName);
+            Files.copy(inputStream, path, StandardCopyOption.REPLACE_EXISTING);
+            response.setCode("200");
+            response.setMessage("ok");
+        } catch (IOException ee) {
+            log.error("saveImage() : {}", ee.getLocalizedMessage());
             response.setCode("500");
             response.setMessage("error");
         }
+
 
         return new Gson().toJson(response, CommonResponse.class);
     }

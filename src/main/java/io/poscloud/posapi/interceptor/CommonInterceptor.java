@@ -23,18 +23,20 @@ public class CommonInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        String taxId = request.getHeader("tax-id");
-
-        if (null == taxId || taxId.length() != 10 || !taxId.matches("[0-9]+")) {
-            log.error("invalid tax-id.");
-            return false;
-        }
-
-        if (!oneTimePassword.isOtpValid(request.getHeader("otp"), taxId)) {
-            log.error("invalid otp.");
-            return false;
-        }
-
         return true;
+
+//        String taxId = request.getHeader("tax-id");
+//
+//        if (null == taxId || taxId.length() != 10 || !taxId.matches("[0-9]+")) {
+//            log.error("invalid tax-id.");
+//            return false;
+//        }
+//
+//        if (!oneTimePassword.isOtpValid(request.getHeader("otp"), taxId)) {
+//            log.error("invalid otp.");
+//            return false;
+//        }
+//
+//        return true;
     }
 }
